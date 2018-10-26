@@ -1,0 +1,47 @@
+<!--继承base.html模板-->
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>注册页面</title>
+{% endblock %}
+
+
+<!--自定义内容区域，与base.html中block content对应-->
+{% block content %}
+    <div class="col-md-4 col-md-offset-8" style="margin-top: 3%;" >
+        <!--任何分辨率都分为12块，div占4块，右移8块-->
+        {% csrf_token %}
+        <h2 >注册</h2>
+        <form  method="post" action="/register/">
+        <div class="form-group">
+            <label for="username1" style="margin-top: 3%">用户名：</label>
+            <input type="text" class="form-control"  style="width: 318px" id="username1" name="username" placeholder="请输入用户名" value="{{username}}" maxlength="35">
+            <!---传给后台的变量名是name的值，不是id的值--->
+        </div>
+        <div class="form-group">
+            <label for="password1">密码：</label>
+            <input type="password" class="form-control" style="width: 318px" id="password1"  name="password1" placeholder="请输入密码" maxlength="30">
+        </div>
+        <div class="form-group">
+            <label for="password2">确认密码：</label>
+            <input type="password" class="form-control" style="width: 318px" id="password2"  name="password2" placeholder="请再次输入密码" maxlength="30">
+        </div>
+         <div class="form-group">
+            <label for="email">邮箱：</label>
+            <input type="text" class="form-control" style="width: 318px" id="email"  name="email" placeholder="请输入邮箱" value="{{ email }}" maxlength="50">
+        </div>
+        <div class="form-group">
+            <label for="sex">性别：</label>
+            <select name="sex" id="sex" class="form-control" style="width: 70px">
+                <option value="M" selected>男</option>
+                <option value="F">女</option>
+            </select>
+        </div>
+         <a id="message" style="color: red;">{{message}}</a><br>
+        <button type="submit" id="sign2" class="btn btn-success" style="margin-top: 2%">注册</button>
+        <span style="margin-left: 50px">已有账号</span>
+        <a href="/login">直接登录</button></a>
+         {% csrf_token %}
+        </form>
+    </div>
+{% endblock %}
